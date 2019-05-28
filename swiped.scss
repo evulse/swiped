@@ -27,16 +27,8 @@ $column-gap-large: 1.5rem !default;
 .swiped {
 
   overflow-x: hidden;
-
-  &.swiped-has-space {
-    margin: -100px;
-    padding: 100px;
-
-    & > .swiped-items {
-      margin: -100px 0 -150px 0;
-      padding: 100px 0 150px 0;
-    }
-  }
+  margin: -100px;
+  padding: 100px;
 
   & > .swiped-controls {
     flex: none;
@@ -58,10 +50,6 @@ $column-gap-large: 1.5rem !default;
     padding-right: 0;
   }
 
-  & > .swiped-items[data-swiped-scrolling] {
-    scroll-snap-type: y;
-  }
-
   & > .swiped-items {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -72,16 +60,15 @@ $column-gap-large: 1.5rem !default;
     -webkit-scroll-snap-type: mandatory; /* Safari */
     -webkit-scroll-snap-destination: 0% 0%;
     -webkit-overflow-scrolling: touch; /* important for iOS */
-    margin: 0 0 -50px 0;
-    padding: 0 0 50px 0; /* maximum width of scrollbar */
+    margin: -100px 0 -150px 0;
+    padding: 100px 0 150px 0;
     display: flex;
+
   }
 
   @each $breakpoint in $breakpoints {
     $breakpoint-name: nth($breakpoint, 1);
     $breakpoint-width: nth($breakpoint, 2);
-    $breakpoint-max-name: nth($breakpoint, 3);
-    $breakpoint-max-width: nth($breakpoint, 4);
 
     & > .swiped-controls [data-swiped-toggle-items#{$breakpoint-name}] {
       color: #CCC
@@ -95,7 +82,7 @@ $column-gap-large: 1.5rem !default;
           }
 
           & > .swiped-items > .swiped-item {
-            width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i - 1) / $i});
+            width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i - 1) / $i} + 0.1px);
           }
 
           & > .swiped-controls [data-swiped-toggle-items#{$breakpoint-name}="#{$i}"] {
@@ -105,53 +92,62 @@ $column-gap-large: 1.5rem !default;
         }
       }
 
-          @each $breakpoint2 in $breakpoints {
-            $breakpoint-name2: nth($breakpoint2, 1);
-            $breakpoint-width2: nth($breakpoint2, 2);
-            $breakpoint-max-name2: nth($breakpoint2, 3);
-            $breakpoint-max-width2: nth($breakpoint2, 4);
+      @for $j from length($breakpoints) through 1 {
+        $breakpoint-max-name: nth(nth($breakpoints, $j), 3);
+        $breakpoint-max-width: nth(nth($breakpoints, $j), 4);
 
-            @if $breakpoint-max-width <= $breakpoint-max-width2 {
+        @if $breakpoint-width < $breakpoint-max-width {
 
-              @include until($breakpoint-max-width2) { // until mobile
+          @include from($breakpoint-width) {
+
+            @include until($breakpoint-max-width) { // until mobile
 
               &[data-swiped-item-count#{$breakpoint-name}="#{$i}"] {
 
-              &.swiped-has-preview#{$breakpoint-max-name2} {
-                & > .swiped-items > .swiped-item {
-                  width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 1)} + 1px);
-                }
-              }
-
-              &.swiped-is-gapless#{$breakpoint-max-name2} {
-                & > .swiped-items > .swiped-item {
-                  width: percentage(1 / $i);
-                  margin: 0;
-                  padding: 0;
-                }
-              }
-
-              &.swiped-is-padded#{$breakpoint-max-name2} {
-                & > .swiped-items > .swiped-item {
-                  width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 1)} + 1px);
-                  padding-left: $column-gap * 2;
-                  padding-right: 0;
+                &.swiped-has-preview#{$breakpoint-max-name} {
+                  & > .swiped-items > .swiped-item {
+                    width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i + 1) / $i});
+                  }
                 }
 
-                & > .swiped-items > .swiped-item:last-child {
-                  padding-right: $column-gap * 2;
-                }
-              }
-
-              &.swiped-has-padded-preview#{$breakpoint-max-name2} {
-                & > .swiped-items > .swiped-item {
-                  width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 2)} + 1px);
-                  padding-left: $column-gap * 2;
-                  padding-right: 0;
+                &.swiped-is-gapless#{$breakpoint-max-name} {
+                  & > .swiped-items > .swiped-item {
+                    width: percentage(1 / $i);
+                    margin: 0;
+                    padding: 0;
+                  }
                 }
 
-                & > .swiped-items > .swiped-item:last-child {
-                  padding-right: $column-gap * 2;
+                &.swiped-has-gapless-preview#{$breakpoint-max-name} {
+                  & > .swiped-items > .swiped-item {
+                    width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 / $i});
+                    margin: 0;
+                    padding: 0;
+                  }
+                }
+
+                &.swiped-has-padding#{$breakpoint-max-name} {
+                  & > .swiped-items > .swiped-item {
+                    width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i + 1) / $i} + 0.1px);
+                    padding-left: $column-gap * 2;
+                    padding-right: 0;
+                  }
+
+                  & > .swiped-items > .swiped-item:last-child {
+                    padding-right: $column-gap * 2;
+                  }
+                }
+
+                &.swiped-has-padded-preview#{$breakpoint-max-name} {
+                  & > .swiped-items > .swiped-item {
+                    width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i + 2) / $i});
+                    padding-left: $column-gap * 2;
+                    padding-right: 0;
+                  }
+
+                  & > .swiped-items > .swiped-item:last-child {
+                    padding-right: $column-gap * 2;
+                  }
                 }
               }
             }

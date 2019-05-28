@@ -1,0 +1,53 @@
+{
+  "name": "swiped",
+  "version": "0.1.0",
+  "homepage": "https://github.com/evulse/swiped",
+  "author": {
+    "name": "Mike Angell",
+    "email": "mike@evulse.com"
+  },
+  "description": "Lightweight responsive CSS based slider carousel supporting multiple items",
+  "main": "swiped.scss",
+  "unpkg": "css/swiped.css",
+  "style": "swiped/css/swiped.min.css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evulse/swiped.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "sass",
+    "flexbox",
+    "responsive",
+    "carousel",
+    "slider",
+    "multiple"
+  ],
+  "bugs": {
+    "url": "https://github.com/evulse/swiped/issues"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.12.0",
+    "rimraf": "^2.6.3",
+    "uglify-js": "^3.5.15"
+  },
+  "scripts": {
+    "build": "npm run build-clean && npm run build-sass && npm run build-cleancss && npm run build-cleancss && npm run build-js && npm run build-uglifyjs",
+    "build-cleancss": "cleancss -o dist/swiped.min.css dist/swiped.css",
+    "build-clean": "rimraf css",
+    "build-sass": "node-sass --output-style expanded --source-map true swiped.scss dist/swiped.css",
+    "build-uglifyjs": "uglifyjs dist/swiped.js --compress --mangle --source-map --output dist/swiped.min.js",
+    "build-js": "cp swiped.js dist/",
+    "deploy": "npm run build",
+    "start": "npm run build-sass -- --watch"
+  },
+  "files": [
+    "dist",
+    "swiped.scss",
+    "swiped.js",
+    "LICENSE",
+    "README.md"
+  ]
+}

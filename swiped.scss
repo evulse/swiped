@@ -1,0 +1,156 @@
+$gap: 32px !default;
+$tablet: 769px !default;
+$desktop: 960px + 2 * $gap !default;
+$wide-screen: 1152px + 2 * $gap !default;
+$full-hd: 1344px + 2 * $gap !default;
+
+$breakpoints: ("" 0 "-mobile" $tablet, "-tablet" $tablet "-tablet" $desktop, "-desktop" $desktop "" 99999px);
+
+$column-gap-tiny: 0.25rem !default;
+$column-gap-small: 0.5rem !default;
+$column-gap: 0.75rem !default;
+$column-gap-medium: 1rem !default;
+$column-gap-large: 1.5rem !default;
+
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+.swiped {
+
+  overflow-x: hidden;
+
+  &.swiped-has-space {
+    margin: -100px;
+    padding: 100px;
+
+    & > .swiped-items {
+      margin: -100px 0 -150px 0;
+      padding: 100px 0 150px 0;
+    }
+  }
+
+  & > .swiped-controls {
+    flex: none;
+    width: 100%;
+  }
+
+  & > .swiped-items > .swiped-item {
+    box-sizing: content-box;
+    flex: none;
+    scroll-snap-align: start; /* latest (Chrome 69+) */
+    scroll-snap-coordinate: 0% 0%; /* older (Firefox/IE) */
+    -webkit-scroll-snap-coordinate: 0% 0%; /* older (Safari) */
+    display: block;
+    padding: 0 ($column-gap * 2) 0 0;
+    min-width: 0;
+  }
+
+  &.swiped-is-gapless {
+    & > .swiped-items > .swiped-item {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  & > .swiped-items > .swiped-item:last-child {
+    padding-right: 0;
+  }
+
+  & > .swiped-items[data-swiped-scrolling] {
+    scroll-snap-type: y;
+  }
+
+  & > .swiped-items {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory; /* Chrome Canary */
+    scroll-snap-type: mandatory; /* Firefox */
+    -ms-scroll-snap-type: mandatory; /* IE/Edge */
+    -webkit-scroll-snap-type: mandatory; /* Safari */
+    -webkit-scroll-snap-destination: 0% 0%;
+    -webkit-overflow-scrolling: touch; /* important for iOS */
+    margin: 0 0 -50px 0;
+    padding: 0 0 50px 0; /* maximum width of scrollbar */
+    display: flex;
+  }
+
+  @each $breakpoint in $breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+    $breakpoint-width: nth($breakpoint, 2);
+    $breakpoint-max-name: nth($breakpoint, 3);
+    $breakpoint-max-width: nth($breakpoint, 4);
+
+    & > .swiped-controls [data-swiped-toggle-items#{$breakpoint-name}] {
+      color: #CCC
+    }
+
+    @for $i from 1 through 12 {
+      @include from($breakpoint-width) {
+        &[data-swiped-item-count#{$breakpoint-name}="#{$i}"] {
+          & > .swiped-items {
+            scroll-snap-points-y: repeat(percentage(1 / $i));
+          }
+
+          & > .swiped-items > .swiped-item {
+            width: calc(#{percentage(1 / $i)} - #{$column-gap * 2 * ($i - 1) / $i});
+          }
+
+          &.swiped-is-gapless {
+            & > .swiped-items > .swiped-item {
+              width: percentage(1 / $i);
+            }
+          }
+
+          & > .swiped-controls [data-swiped-toggle-items#{$breakpoint-name}="#{$i}"] {
+            color: #000;
+          }
+
+        }
+      }
+
+      @include until($breakpoint-max-width) {
+        &[data-swiped-item-count#{$breakpoint-name}="#{$i}"] {
+          &.swiped-has-preview#{$breakpoint-max-name} {
+            & > .swiped-items > .swiped-item {
+              width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 1)} + 1px);
+            }
+          }
+
+          &.swiped-is-padded#{$breakpoint-max-name} {
+            & > .swiped-items > .swiped-item {
+              width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 1)} + 1px);
+              padding-left: $column-gap * 2;
+              padding-right: 0;
+            }
+
+            & > .swiped-items > .swiped-item:last-child {
+              padding-right: $column-gap * 2;
+            }
+          }
+
+          &.swiped-has-padded-preview#{$breakpoint-max-name} {
+            & > .swiped-items > .swiped-item {
+              width: calc(#{percentage(1 / $i)} - #{$column-gap * ($i + 2)} + 1px);
+              padding-left: $column-gap * 2;
+              padding-right: 0;
+            }
+
+            & > .swiped-items > .swiped-item:last-child {
+              padding-right: $column-gap * 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

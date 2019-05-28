@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github-gist.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <section class="hero is-primary  has-text-centered">
@@ -39,32 +43,32 @@
                     <div class="swiped-items">
                         <div class="swiped-item">
                             <div class="image is-1by2">
-                                <img src="https://picsum.photos/200/400?1" data-aos="fade-up-left"
+                                <img src="https://picsum.photos/200/400?1" data-aos="fade-down"
                                      data-aos-duration="3000" data-aos-anchor-placement="center-bottom">
                             </div>
 
                         </div>
                         <div class="swiped-item">
                             <div class="image is-1by2">
-                                <img src="https://picsum.photos/200/400?2" data-aos="fade-up-left"
+                                <img src="https://picsum.photos/200/400?2" data-aos="fade-up"
                                      data-aos-duration="3000" data-aos-anchor-placement="center-bottom">
                             </div>
                         </div>
                         <div class="swiped-item">
                             <div class="image is-1by2">
-                                <img src="https://picsum.photos/200/400?3" data-aos="fade-up"
+                                <img src="https://picsum.photos/200/400?3" data-aos="fade-down"
                                      data-aos-duration="3000" data-aos-anchor-placement="center-bottom">
                             </div>
                         </div>
                         <div class="swiped-item">
                             <div class="image is-1by2">
-                                <img src="https://picsum.photos/200/400?4" data-aos="fade-up-right"
+                                <img src="https://picsum.photos/200/400?4" data-aos="fade-up"
                                      data-aos-duration="3000" data-aos-anchor-placement="center-bottom">
                             </div>
                         </div>
                         <div class="swiped-item">
                             <div class="image is-1by2">
-                                <img src="https://picsum.photos/200/400?5" data-aos="fade-up-right"
+                                <img src="https://picsum.photos/200/400?5" data-aos="fade-down"
                                      data-aos-duration="3000" data-aos-anchor-placement="center-bottom">
                             </div>
                         </div>
@@ -114,14 +118,453 @@
         </div>
     </div>
 </section>
-<section class="section">
+<section class="section is-medium">
     <div class="container">
+        <div class="content">
         <h1 class="title has-text-centered is-1">
-            Swiped
+            Getting Started
         </h1>
         <p class="subtitle has-text-centered">
-            My first website with <strong>Bulma</strong>!
+            Using Swiped can be as simple as a single <strong>CSS Include</strong>!
         </p>
+            <p>&nbsp;</p>
+            <div class="message is-warning">
+                <div class="message-header">
+                    Use generated CSS and JS from Github
+                </div>
+                <div class="message-body">
+                    <p>The simplest way to get started is copy the following files from github and include in your project.</p>
+                    <pre><code class="html">&#x3C;script src=&#x22;dist/swiped.min.css&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;script src=&#x22;dist/swiped.min.js&#x22;&#x3E;&#x3C;/script&#x3E; // Only required when using arrows</code></pre>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <div class="message is-danger">
+                <div class="message-header">
+                    Take control with Sass!
+                </div>
+                <div class="message-body">
+                    <p>This library is built using Sass. You can customise things such as column gap by using the Sass directly.</p>
+                    <pre><code class="css">@import 'swiped.scss';</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section is-medium has-background-primary">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-centered is-1 has-text-white">
+                The Basic Markup
+            </h1>
+            <p class="subtitle has-text-centered has-text-white">
+                Swiped has a very simple markup, you just need a container, body, items and tell it how many columns you want.
+            </p>
+            <p>&nbsp;</p>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped&#x22; data-swiped-item-count=&#x22;2&#x22;&#x3E;
+    &#x3C;div class=&#x22;swiped-items&#x22;&#x3E;
+        &#x3C;div class=&#x22;swiped-item&#x22;&#x3E;
+            &#x3C;img src=&#x22;https://picsum.photos/200/400?1&#x22;&#x3E;
+        &#x3C;/div&#x3E;
+        &#x3C;div class=&#x22;swiped-item&#x22;&#x3E;
+            &#x3C;p&#x3E;Hello&#x3C;/p&#x3E;
+        &#x3C;/div&#x3E;
+        &#x3C;div class=&#x22;swiped-item&#x22;&#x3E;
+            &#x3C;img src=&#x22;https://picsum.photos/200/400?3&#x22;&#x3E;
+        &#x3C;/div&#x3E;
+        ...
+    &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+        </div>
+    </div>
+</section>
+<section class="section is-medium">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-centered is-1">
+                Responsive Columns
+            </h1>
+            <p class="subtitle has-text-centered">
+                Swiped responsive columns are mobile first, so if you only set the default, all devices will see the same.
+            </p>
+            <p>&nbsp;</p>
+            <h3 class="title is-4">
+                Same across all devices
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped&#x22; data-swiped-item-count=&#x22;5&#x22;&#x3E;</code></pre>
+
+            <div class="swiped" data-swiped-item-count="5">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <h3 class="title is-4">
+                Show 3 on mobile and 5 on desktop
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped&#x22;
+                data-swiped-item-count=&#x22;3&#x22;
+                data-swiped-item-count-desktop=&#x22;5&#x22;&#x3E;</code></pre>
+
+            <div class="swiped" data-swiped-item-count="3" data-swiped-item-count-desktop="5">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <h3 class="title is-4">
+                Show 2 on mobile, 3 on tablet and 6 on desktop
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped&#x22;
+                data-swiped-item-count=&#x22;2&#x22;
+                data-swiped-item-count-tablet=&#x22;3&#x22;
+                data-swiped-item-count-desktop=&#x22;6&#x22;&#x3E;</code></pre>
+
+            <div class="swiped" data-swiped-item-count="2" data-swiped-item-count-tablet="3" data-swiped-item-count-desktop="6">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section is-medium has-background-primary has-text-white">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-centered is-1 has-text-white">
+                Going Gapless!
+            </h1>
+            <p class="subtitle has-text-centered has-text-white">
+                Although spacing is great, sometimes you may want to remove spacing altogether.
+            </p>
+            <p>&nbsp;</p>
+            <h3 class="title is-4 has-text-white">
+                Gapless across all devices
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped swiped-is-gapless&#x22; data-swiped-item-count=&#x22;5&#x22;&#x3E;</code></pre>
+
+            <div class="swiped swiped-is-gapless" data-swiped-item-count="3" data-swiped-item-count-desktop="5">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <h3 class="title is-4 has-text-white">
+                Tablet and below
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped swiped-is-gapless-tablet&#x22; data-swiped-item-count=&#x22;5&#x22;&#x3E;</code></pre>
+
+            <div class="swiped swiped-is-gapless-tablet" data-swiped-item-count="3" data-swiped-item-count-desktop="5">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <h3 class="title is-4 has-text-white">
+                Mobile only
+            </h3>
+            <pre><code class="html">&#x3C;div class=&#x22;swiped swiped-is-gapless-mobile&#x22; data-swiped-item-count=&#x22;5&#x22;&#x3E;</code></pre>
+
+            <div class="swiped swiped-is-gapless-mobile" data-swiped-item-count="3" data-swiped-item-count-desktop="5">
+                <div class="swiped-items">
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?1">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?2">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?3">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?4">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?5">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?6">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?7">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?8">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?9">
+                        </div>
+                    </div>
+                    <div class="swiped-item">
+                        <div class="image is-1by1">
+                            <img src="https://picsum.photos/400/400?10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <script defer src="swiped.min.js"></script>

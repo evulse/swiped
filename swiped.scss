@@ -92,9 +92,9 @@ $column-gap-large: 1.5rem !default;
         }
       }
 
-      @for $j from length($breakpoints) through 1 {
-        $breakpoint-max-name: nth(nth($breakpoints, $j), 3);
-        $breakpoint-max-width: nth(nth($breakpoints, $j), 4);
+      @for $j from length($breakpoints)*-1 through -1 {
+        $breakpoint-max-name: nth(nth($breakpoints, $j * -1), 3);
+        $breakpoint-max-width: nth(nth($breakpoints, $j * -1), 4);
 
         @if $breakpoint-width < $breakpoint-max-width {
 
